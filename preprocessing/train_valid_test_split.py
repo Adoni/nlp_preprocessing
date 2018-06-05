@@ -52,11 +52,11 @@ test_ratio = 0.1
 train_count = int(len(sentences) * train_ratio)
 valid_count = int(len(sentences) * valid_ratio)
 
-with open(os.path.join(args.output, "train.txt"), "w", encoding="utf-8") as f:
+with open(os.path.join(args.output, args.prefix+"train.txt"), "w", encoding="utf-8") as f:
     f.write('\n'.join(sentences[:train_count]))
-with open(os.path.join(args.output, "valid.txt"), "w", encoding="utf-8") as f:
+with open(os.path.join(args.output, args.prefix+"valid.txt"), "w", encoding="utf-8") as f:
     f.write('\n'.join(sentences[train_count:train_count+valid_count]))
-with open(os.path.join(args.output, "test.txt"), "w", encoding="utf-8") as f:
+with open(os.path.join(args.output, args.prefix+"test.txt"), "w", encoding="utf-8") as f:
     f.write('\n'.join(sentences[train_count+valid_count:]))
 
 if args.save_order_to != '':
