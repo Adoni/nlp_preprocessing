@@ -22,8 +22,10 @@ import numpy
 parser = argparse.ArgumentParser(description='Shuffle dataset into train, valid and test')
 parser.add_argument('--input', type=str, help='path of corpus file')
 parser.add_argument('--output', type=str, help='path of output file')
-parser.add_argument('--save-order-to', type=str, default='', help='path of order')
-parser.add_argument('--load-order-from', type=str, default='', help='path of order, use random order if it is empty')
+parser.add_argument('--save-order-to', type=str, default='', help='path of order to save')
+parser.add_argument('--load-order-from', type=str, default='', help='path of order to load, use random one if empty')
+parser.add_argument('--file_prefix', type=str, default='', help='prefix of the output files')
+
 args = parser.parse_args()
 
 sentences = []
