@@ -22,6 +22,7 @@ import numpy
 parser = argparse.ArgumentParser(description='Shuffle dataset into train, valid and test')
 parser.add_argument('--input', type=str, help='path of corpus file')
 parser.add_argument('--output', type=str, help='path of output file')
+parser.add_argument('--order', type=str, default='', help='path of order, use random order if it is empty')
 args = parser.parse_args()
 
 sentences = []
@@ -32,7 +33,14 @@ with open(args.input, "r", encoding="utf-8") as f:
             continue
         sentences.append(line)
 
-numpy.random.shuffle(sentences)
+if args.order == '':
+    order = list(range(len(sentences)))
+    numpy.random.shuffle(order)
+else:
+    with open(args.order, "r", encoding="utf-8") as f:
+        order = [int(line.strip()) for line in f]
+
+sentences = [sentences[i] for i in order]
 
 train_ratio = 0.8
 valid_ratio = 0.1
